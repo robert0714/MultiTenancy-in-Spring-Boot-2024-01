@@ -19,7 +19,7 @@ public abstract class Base implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "base_gen")
-    private String id;
+    private Long id;
 
     @CreatedDate
     protected LocalDateTime createdAt;
