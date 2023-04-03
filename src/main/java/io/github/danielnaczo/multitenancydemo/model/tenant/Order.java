@@ -7,13 +7,13 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "Ordering")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@SequenceGenerator(name = "base_gen", sequenceName = "order_seq")
+@SequenceGenerator(name = "base_gen", sequenceName = "ordering_seq")
 public class Order extends Base {
     private LocalDateTime orderDateTime;
     private Long productCode;
