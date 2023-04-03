@@ -1,4 +1,4 @@
-package io.github.danielnaczo.multitenancydemo.model.database.repository;
+package io.github.danielnaczo.multitenancydemo.database.repository;
 
 import io.github.danielnaczo.multitenancydemo.model.shared.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

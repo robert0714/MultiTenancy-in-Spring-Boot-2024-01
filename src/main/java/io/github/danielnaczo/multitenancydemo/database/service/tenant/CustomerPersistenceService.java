@@ -1,6 +1,6 @@
-package io.github.danielnaczo.multitenancydemo.model.database.service.tenant;
+package io.github.danielnaczo.multitenancydemo.database.service.tenant;
 
-import io.github.danielnaczo.multitenancydemo.model.database.repository.CustomerRepository;
+import io.github.danielnaczo.multitenancydemo.database.repository.CustomerRepository;
 import io.github.danielnaczo.multitenancydemo.model.tenant.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

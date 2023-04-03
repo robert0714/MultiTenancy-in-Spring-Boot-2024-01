@@ -1,6 +1,6 @@
-package io.github.danielnaczo.multitenancydemo.model.database.service.shared;
+package io.github.danielnaczo.multitenancydemo.database.service.shared;
 
-import io.github.danielnaczo.multitenancydemo.model.database.repository.ProductRepository;
+import io.github.danielnaczo.multitenancydemo.database.repository.ProductRepository;
 import io.github.danielnaczo.multitenancydemo.model.shared.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
