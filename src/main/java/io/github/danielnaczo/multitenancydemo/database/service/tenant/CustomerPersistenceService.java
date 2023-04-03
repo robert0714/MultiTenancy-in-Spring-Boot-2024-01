@@ -18,4 +18,8 @@ public class CustomerPersistenceService {
     public Customer saveCustomer(Customer customer) {
         return this.customerRepository.save(customer);
     }
+
+    public Customer findCustomerByCustomerId(String customerId) {
+        return this.customerRepository.findCustomerByCustomerId(customerId);
+    }
 }
