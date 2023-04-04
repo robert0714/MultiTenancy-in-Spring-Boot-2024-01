@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 
     private final CustomerPersistenceService customerPersistenceService;
+    private ModelMapper modelMapper;
 
     @Autowired
     public CustomerService(CustomerPersistenceService customerPersistenceService) {
         this.customerPersistenceService = customerPersistenceService;
+        this.modelMapper = new ModelMapper();
     }
 
     public void saveCustomer(CustomerRequestDto customerRequestDto) {
-        ModelMapper modelMapper = new ModelMapper();
-        Customer customer = modelMapper.map(customerRequestDto, Customer.class);
+        Customer customer = this.modelMapper.map(customerRequestDto, Customer.class);
         this.customerPersistenceService.saveCustomer(customer);
     }
 

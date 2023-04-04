@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
     private final ProductPersistenceService productPersistenceService;
+    private ModelMapper modelMapper;
 
     @Autowired
     public ProductService(ProductPersistenceService productPersistenceService) {
         this.productPersistenceService = productPersistenceService;
+        this.modelMapper = new ModelMapper();
     }
 
     public void saveProduct(ProductRequestDto productRequestDto) {
-        ModelMapper modelMapper = new ModelMapper();
-        Product product = modelMapper.map(productRequestDto, Product.class);
+        Product product = this.modelMapper.map(productRequestDto, Product.class);
         this.productPersistenceService.saveProduct(product);
     }
 
