@@ -23,7 +23,7 @@ public class CustomerService {
         this.customerPersistenceService.saveCustomer(customer);
     }
 
-    public Customer findCustomerByCustomerId(String customerId) {
-        return this.customerPersistenceService.findCustomerByCustomerId(customerId);
+    public Customer findCustomerByCustomerCode(String customerCode) {
+        return this.customerPersistenceService.findCustomerByCustomerCode(customerCode);
     }
 }

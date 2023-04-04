@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerRequestDto {
-    private String customerId;
+    private String customerCode;
     private String firstName;
     private String lastName;
     private String address;

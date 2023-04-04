@@ -14,5 +14,5 @@ import java.time.LocalDateTime;
 public class OrderRequestDto {
     private LocalDateTime orderDateTime;
     private String productCode;
-    private String customerId;
+    private String customerCode;
 }

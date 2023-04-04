@@ -32,9 +32,9 @@ public class OrderService {
         Order order = new Order();
         order.setProductCode(orderRequestDto.getProductCode());
 
-        Customer customer = this.customerService.findCustomerByCustomerId(orderRequestDto.getCustomerId());
+        Customer customer = this.customerService.findCustomerByCustomerCode(orderRequestDto.getCustomerCode());
         if (customer == null) {
-            throw new RuntimeException("Customer with customerId '" + orderRequestDto.getCustomerId() + "' not found in Database");
+            throw new RuntimeException("Customer with customerCode '" + orderRequestDto.getCustomerCode() + "' not found in Database");
         }
         order.setCustomer(customer);
         order.setOrderDateTime(orderRequestDto.getOrderDateTime());

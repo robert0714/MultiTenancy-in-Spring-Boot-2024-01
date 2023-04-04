@@ -15,12 +15,12 @@ import lombok.*;
 @ToString
 @SequenceGenerator(name = "base_gen", sequenceName = "customer_seq")
 @Table(uniqueConstraints = {
-        @UniqueConstraint(name = "UQ__customer__customer_id", columnNames = {"customerId"})
+        @UniqueConstraint(name = "UQ__customer__customer_code", columnNames = {"customerCode"})
     }
 )
 public class Customer extends Base {
 
-    private String customerId;
+    private String customerCode;
     private String firstName;
     private String lastName;
     private String address;

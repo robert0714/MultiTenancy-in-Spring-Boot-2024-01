@@ -19,7 +19,7 @@ public class CustomerPersistenceService {
         return this.customerRepository.save(customer);
     }
 
-    public Customer findCustomerByCustomerId(String customerId) {
-        return this.customerRepository.findCustomerByCustomerId(customerId);
+    public Customer findCustomerByCustomerCode(String customerCode) {
+        return this.customerRepository.findCustomerByCustomerCode(customerCode);
     }
 }
