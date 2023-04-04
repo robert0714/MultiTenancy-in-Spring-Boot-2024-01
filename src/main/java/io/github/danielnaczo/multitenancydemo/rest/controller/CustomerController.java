@@ -1,6 +1,6 @@
 package io.github.danielnaczo.multitenancydemo.rest.controller;
 
-import io.github.danielnaczo.multitenancydemo.model.tenant.Customer;
+import io.github.danielnaczo.multitenancydemo.rest.dto.CustomerRequestDto;
 import io.github.danielnaczo.multitenancydemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class CustomerController {
     }
     
     @PostMapping
-    public void receiveCustomer(@RequestBody Customer customer) {
-        this.customerService.saveCustomer(customer);
+    public void receiveCustomer(@RequestBody CustomerRequestDto customerRequestDto) {
+        this.customerService.saveCustomer(customerRequestDto);
     }
 }
