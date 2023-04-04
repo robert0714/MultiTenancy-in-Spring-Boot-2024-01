@@ -4,11 +4,14 @@ import io.github.danielnaczo.multitenancydemo.database.service.tenant.CustomerPe
 import io.github.danielnaczo.multitenancydemo.model.tenant.Customer;
 import io.github.danielnaczo.multitenancydemo.rest.dto.CustomerRequestDto;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
+    private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
 
     private final CustomerPersistenceService customerPersistenceService;
     private ModelMapper modelMapper;
@@ -21,7 +24,8 @@ public class CustomerService {
 
     public void saveCustomer(CustomerRequestDto customerRequestDto) {
         Customer customer = this.modelMapper.map(customerRequestDto, Customer.class);
-        this.customerPersistenceService.saveCustomer(customer);
+        Customer savedCustomer = this.customerPersistenceService.saveCustomer(customer);
+        LOG.info("Saved customer: {}", savedCustomer);
     }
 
     public Customer findCustomerByCustomerCode(String customerCode) {

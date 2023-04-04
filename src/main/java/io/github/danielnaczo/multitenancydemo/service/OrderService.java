@@ -5,11 +5,14 @@ import io.github.danielnaczo.multitenancydemo.model.shared.Product;
 import io.github.danielnaczo.multitenancydemo.model.tenant.Customer;
 import io.github.danielnaczo.multitenancydemo.model.tenant.Order;
 import io.github.danielnaczo.multitenancydemo.rest.dto.OrderRequestDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
+    private static final Logger LOG = LoggerFactory.getLogger(OrderService.class);
 
     private final OrderPersistenceService orderPersistenceService;
     private final CustomerService customerService;
@@ -38,6 +41,7 @@ public class OrderService {
         }
         order.setCustomer(customer);
         order.setOrderDateTime(orderRequestDto.getOrderDateTime());
-        this.orderPersistenceService.saveOrder(order);
+        Order savedOrder = this.orderPersistenceService.saveOrder(order);
+        LOG.info("Saved order: {}", savedOrder);
     }
 }

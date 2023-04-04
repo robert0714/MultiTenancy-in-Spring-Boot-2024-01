@@ -4,11 +4,14 @@ import io.github.danielnaczo.multitenancydemo.database.service.shared.ProductPer
 import io.github.danielnaczo.multitenancydemo.model.shared.Product;
 import io.github.danielnaczo.multitenancydemo.rest.dto.ProductRequestDto;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
+    private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
 
     private final ProductPersistenceService productPersistenceService;
     private ModelMapper modelMapper;
@@ -21,7 +24,8 @@ public class ProductService {
 
     public void saveProduct(ProductRequestDto productRequestDto) {
         Product product = this.modelMapper.map(productRequestDto, Product.class);
-        this.productPersistenceService.saveProduct(product);
+        Product savedProduct = this.productPersistenceService.saveProduct(product);
+        LOG.info("Saved product: {}", savedProduct);
     }
 
     public Product findProductByCode(String productCode) {
