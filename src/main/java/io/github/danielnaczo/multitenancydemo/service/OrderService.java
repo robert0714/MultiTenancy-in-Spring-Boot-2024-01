@@ -4,6 +4,7 @@ import io.github.danielnaczo.multitenancydemo.database.service.tenant.OrderPersi
 import io.github.danielnaczo.multitenancydemo.model.shared.Product;
 import io.github.danielnaczo.multitenancydemo.model.tenant.Customer;
 import io.github.danielnaczo.multitenancydemo.model.tenant.Order;
+import io.github.danielnaczo.multitenancydemo.rest.dto.OrderRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,18 +24,20 @@ public class OrderService {
         this.productService = productService;
     }
 
-    public void saveOrder(Order order, String productCode, String customerId) {
-        Product product = this.productService.findProductByCode(productCode);
+    public void saveOrder(OrderRequestDto orderRequestDto) {
+        Product product = this.productService.findProductByCode(orderRequestDto.getProductCode());
         if (product == null) {
-            throw new RuntimeException("Product with code '" + productCode + "' not found in Database");
+            throw new RuntimeException("Product with code '" + orderRequestDto.getProductCode() + "' not found in Database");
         }
-        order.setProductCode(productCode);
+        Order order = new Order();
+        order.setProductCode(orderRequestDto.getProductCode());
 
-        Customer customer = this.customerService.findCustomerByCustomerId(customerId);
+        Customer customer = this.customerService.findCustomerByCustomerId(orderRequestDto.getCustomerId());
         if (customer == null) {
-            throw new RuntimeException("Customer with customerId '" + customerId + "' not found in Database");
+            throw new RuntimeException("Customer with customerId '" + orderRequestDto.getCustomerId() + "' not found in Database");
         }
         order.setCustomer(customer);
+        order.setOrderDateTime(orderRequestDto.getOrderDateTime());
         this.orderPersistenceService.saveOrder(order);
     }
 }

@@ -1,9 +1,7 @@
 package io.github.danielnaczo.multitenancydemo.rest.controller;
 
-import io.github.danielnaczo.multitenancydemo.model.tenant.Order;
 import io.github.danielnaczo.multitenancydemo.rest.dto.OrderRequestDto;
 import io.github.danielnaczo.multitenancydemo.service.OrderService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +20,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public void receiveOrder(@RequestBody OrderRequestDto orderDto) {
-        ModelMapper mapper = new ModelMapper();
-        Order order = mapper.map(orderDto, Order.class);
-        String customerId = orderDto.getCustomerId();
-        String productCode = orderDto.getProductCode();
-        this.orderService.saveOrder(order, productCode, customerId);
+    public void receiveOrder(@RequestBody OrderRequestDto orderRequestDto) {
+        this.orderService.saveOrder(orderRequestDto);
     }
 }
