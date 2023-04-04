@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static io.github.danielnaczo.multitenancydemo.database.multitenancy.MultiTenancyKeys.defaultDBName;
+
 @Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver, HibernatePropertiesCustomizer {
 
-    private final String dbDefault;
 //    private final HashMap<String, String> tenantMap;
     private static final ThreadLocal<String> currentTenant = new ThreadLocal();
 
     @Autowired
     public TenantIdentifierResolver() {
-        this.dbDefault = "shared";
 //        this.tenantMap = new HashMap();
     }
 
@@ -26,7 +26,7 @@ public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver
     }
 
     public void setTenantToDefault() {
-        currentTenant.set(this.dbDefault);
+        currentTenant.set(defaultDBName);
     }
 
 //    public HashMap<String, String> getTenantMap() {

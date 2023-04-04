@@ -9,14 +9,12 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.github.danielnaczo.multitenancydemo.database.multitenancy.MultiTenancyKeys.*;
+
 @Component
 public class MultiTenantRoutingDatasource extends AbstractRoutingDataSource {
 
     private final TenantIdentifierResolver tenantIdentifierResolver;
-
-    private static final String urlPrefix = "jdbc:postgresql://localhost:5432/";
-    private static final String username = "postgres";
-    private static final String password = "";
 
     @Autowired
     public MultiTenantRoutingDatasource(TenantIdentifierResolver tenantIdentifierResolver) {
@@ -27,7 +25,7 @@ public class MultiTenantRoutingDatasource extends AbstractRoutingDataSource {
     }
 
     private void createDefaultDatabase() {
-        String defaultDBUrl = urlPrefix + "shared";
+        String defaultDBUrl = urlPrefix + defaultDBName;
         setDefaultTargetDataSource(createDatasource(defaultDBUrl, username, password));
     }
 
