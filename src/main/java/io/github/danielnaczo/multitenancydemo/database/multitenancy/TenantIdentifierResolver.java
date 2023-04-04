@@ -42,7 +42,8 @@ public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver
         if (currentTenant.get() != null) {
             return currentTenant.get();
         }
-        throw new RuntimeException("Current tenant not set");
+        return defaultDBName;
+//        throw new RuntimeException("Current tenant not set");
     }
 
     @Override

@@ -44,7 +44,7 @@ public class MultiTenantRoutingDatasource extends AbstractRoutingDataSource {
     private DataSource createDatasource(String url, String username, String password) {
         return DataSourceBuilder
                 .create()
-                .driverClassName("org.hibernate.dialect.PostgreSQLDialect")
+                .driverClassName(driverClassName)
                 .url(url)
                 .username(username)
                 .password(password)
