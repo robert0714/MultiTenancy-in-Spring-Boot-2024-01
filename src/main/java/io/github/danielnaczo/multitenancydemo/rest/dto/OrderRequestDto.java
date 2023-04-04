@@ -13,6 +13,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class OrderRequestDto {
     private LocalDateTime orderDateTime;
-    private Long productCode;
+    private String productCode;
     private String customerId;
 }

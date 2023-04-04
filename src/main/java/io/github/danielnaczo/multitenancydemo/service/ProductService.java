@@ -18,4 +18,8 @@ public class ProductService {
     public void saveProduct(Product product) {
         this.productPersistenceService.saveProduct(product);
     }
+
+    public Product findProductByCode(String productCode) {
+        return this.productPersistenceService.findProductByCode(productCode);
+    }
 }

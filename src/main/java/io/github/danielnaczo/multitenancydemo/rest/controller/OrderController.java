@@ -26,6 +26,7 @@ public class OrderController {
         ModelMapper mapper = new ModelMapper();
         Order order = mapper.map(orderDto, Order.class);
         String customerId = orderDto.getCustomerId();
-        this.orderService.saveOrder(order, customerId);
+        String productCode = orderDto.getProductCode();
+        this.orderService.saveOrder(order, productCode, customerId);
     }
 }

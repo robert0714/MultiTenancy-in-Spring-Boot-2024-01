@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @SequenceGenerator(name = "base_gen", sequenceName = "ordering_seq")
 public class Order extends Base {
     private LocalDateTime orderDateTime;
-    private Long productCode;
+    private String productCode;
     @OneToOne
     @NotNull
     @JoinColumn(foreignKey = @ForeignKey(name = "FK__order__customer"))
