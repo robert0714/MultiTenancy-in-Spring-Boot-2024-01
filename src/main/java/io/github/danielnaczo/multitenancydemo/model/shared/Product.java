@@ -19,7 +19,6 @@ import lombok.*;
     }
 )
 public class Product extends Base {
-
     private String name;
     private String code;
 }

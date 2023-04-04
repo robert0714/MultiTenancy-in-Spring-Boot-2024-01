@@ -19,7 +19,6 @@ import lombok.*;
     }
 )
 public class Customer extends Base {
-
     private String customerCode;
     private String firstName;
     private String lastName;

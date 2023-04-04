@@ -1,6 +1,6 @@
 package io.github.danielnaczo.multitenancydemo.rest.controller;
 
-import io.github.danielnaczo.multitenancydemo.model.shared.Product;
+import io.github.danielnaczo.multitenancydemo.rest.dto.ProductRequestDto;
 import io.github.danielnaczo.multitenancydemo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public void receiveProduct(@RequestBody Product product) {
-        this.productService.saveProduct(product);
+    public void receiveProduct(@RequestBody ProductRequestDto productRequestDto) {
+        this.productService.saveProduct(productRequestDto);
     }
 }
