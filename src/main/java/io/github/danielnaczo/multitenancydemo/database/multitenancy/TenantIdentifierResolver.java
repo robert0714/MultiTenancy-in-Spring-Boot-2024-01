@@ -2,7 +2,6 @@ package io.github.danielnaczo.multitenancydemo.database.multitenancy;
 
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +12,7 @@ import static io.github.danielnaczo.multitenancydemo.database.multitenancy.Multi
 @Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver, HibernatePropertiesCustomizer {
 
-//    private final HashMap<String, String> tenantMap;
     private static final ThreadLocal<String> currentTenant = new ThreadLocal();
-
-    @Autowired
-    public TenantIdentifierResolver() {
-//        this.tenantMap = new HashMap();
-    }
 
     public void setTenant(String tenant) {
         currentTenant.set(tenant);
@@ -29,21 +22,12 @@ public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver
         currentTenant.set(defaultDBName);
     }
 
-//    public HashMap<String, String> getTenantMap() {
-//        return tenantMap;
-//    }
-//
-//    public void addTenant(String country, String tenant) {
-//        this.tenantMap.put(country, tenant);
-//    }
-
     @Override
     public String resolveCurrentTenantIdentifier() {
         if (currentTenant.get() != null) {
             return currentTenant.get();
         }
         return defaultDBName;
-//        throw new RuntimeException("Current tenant not set");
     }
 
     @Override
