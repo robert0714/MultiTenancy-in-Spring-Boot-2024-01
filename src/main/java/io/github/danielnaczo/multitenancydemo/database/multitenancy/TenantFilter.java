@@ -12,7 +12,11 @@ public class TenantFilter extends OncePerRequestFilter {
 
     private static final String TENANT_HEADER_NAME = "X-Tenant-Id";
 
-    private TenantContext tenantContext;
+    private final TenantContext tenantContext;
+
+    public TenantFilter(TenantContext tenantContext) {
+        this.tenantContext = tenantContext;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
