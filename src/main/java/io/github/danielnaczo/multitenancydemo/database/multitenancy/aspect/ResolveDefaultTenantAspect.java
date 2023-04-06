@@ -19,11 +19,15 @@ public class ResolveDefaultTenantAspect {
 
     @Before("execution(* io.github.danielnaczo.multitenancydemo.database.service.shared.*.*(..))")
     public void resolveTenant() {
-        this.tenantIdentifierResolver.setTenantToDefault();
+        setDefaultTenant();
     }
 
     @Before("@annotation(io.github.danielnaczo.multitenancydemo.database.multitenancy.aspect.annotation.SetDefaultForTransaction)")
     public void resolveTenantBeforeTransaction() {
+        setDefaultTenant();
+    }
+
+    private void setDefaultTenant() {
         this.tenantIdentifierResolver.setTenantToDefault();
     }
 }

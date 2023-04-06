@@ -22,11 +22,15 @@ public class ResolveTenantAspect {
 
     @Before("execution(* io.github.danielnaczo.multitenancydemo.database.service.tenant.*.*(..))")
     public void resolveTenant() {
-        this.tenantIdentifierResolver.setTenant(tenantContext.getTenant());
+        setTenant();
     }
 
     @Before("@annotation(io.github.danielnaczo.multitenancydemo.database.multitenancy.aspect.annotation.SetTenantForTransaction)")
     public void resolveTenantBeforeTransaction() {
+        setTenant();
+    }
+
+    private void setTenant() {
         this.tenantIdentifierResolver.setTenant(tenantContext.getTenant());
     }
 }
