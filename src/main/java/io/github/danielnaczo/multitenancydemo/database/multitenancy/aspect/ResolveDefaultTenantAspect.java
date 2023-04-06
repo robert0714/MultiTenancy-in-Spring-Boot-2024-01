@@ -3,10 +3,12 @@ package io.github.danielnaczo.multitenancydemo.database.multitenancy.aspect;
 import io.github.danielnaczo.multitenancydemo.database.multitenancy.TenantIdentifierResolver;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(20)
 public class ResolveDefaultTenantAspect {
 
     private final TenantIdentifierResolver tenantIdentifierResolver;
@@ -17,6 +19,11 @@ public class ResolveDefaultTenantAspect {
 
     @Before("execution(* io.github.danielnaczo.multitenancydemo.database.service.shared.*.*(..))")
     public void resolveTenant() {
+        this.tenantIdentifierResolver.setTenantToDefault();
+    }
+
+    @Before("@annotation(io.github.danielnaczo.multitenancydemo.database.multitenancy.aspect.annotation.SetDefaultForTransaction)")
+    public void resolveTenantBeforeTransaction() {
         this.tenantIdentifierResolver.setTenantToDefault();
     }
 }

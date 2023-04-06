@@ -21,6 +21,6 @@ public class OrderController {
 
     @PostMapping
     public void receiveOrder(@RequestBody OrderRequestDto orderRequestDto) {
-        this.orderService.saveOrder(orderRequestDto);
+        this.orderService.processOrder(orderRequestDto);
     }
 }
