@@ -25,8 +25,8 @@ public class MultiTenantRoutingDatasource extends AbstractRoutingDataSource {
     }
 
     private void createDefaultDatabase() {
-        String defaultDBUrl = urlPrefix + defaultDBName;
-        setDefaultTargetDataSource(createDatasource(defaultDBUrl, username, password));
+        String defaultDBUrl = URL_PREFIX + DEFAULT_DB_NAME;
+        setDefaultTargetDataSource(createDatasource(defaultDBUrl, USERNAME, PASSWORD));
     }
 
     private void createTenantDatabases() {
@@ -37,14 +37,14 @@ public class MultiTenantRoutingDatasource extends AbstractRoutingDataSource {
     }
 
     private void createTenantDatabase(String databaseName, Map<Object, Object> targetDataSources) {
-        DataSource dataSource = createDatasource(urlPrefix + databaseName, username, password);
+        DataSource dataSource = createDatasource(URL_PREFIX + databaseName, USERNAME, PASSWORD);
         targetDataSources.put(databaseName, dataSource);
     }
 
     private DataSource createDatasource(String url, String username, String password) {
         return DataSourceBuilder
                 .create()
-                .driverClassName(driverClassName)
+                .driverClassName(DRIVER_CLASS_NAME)
                 .url(url)
                 .username(username)
                 .password(password)

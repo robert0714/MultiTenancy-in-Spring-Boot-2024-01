@@ -34,7 +34,7 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     public Connection getConnection(String connectionDetails) throws SQLException {
         String tenantIdentifier = connectionDetails.split(":")[0];
         Connection connection;
-        if (tenantIdentifier.equals(MultiTenancyKeys.defaultDBName)) {
+        if (tenantIdentifier.equals(MultiTenancyKeys.DEFAULT_DB_NAME)) {
             connection = this.multiTenantRoutingDatasource.getResolvedDefaultDataSource().getConnection();
         } else {
             connection = this.multiTenantRoutingDatasource.getResolvedDataSources().get(tenantIdentifier).getConnection();

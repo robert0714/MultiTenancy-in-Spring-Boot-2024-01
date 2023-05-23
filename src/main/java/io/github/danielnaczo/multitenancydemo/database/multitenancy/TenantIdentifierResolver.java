@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static io.github.danielnaczo.multitenancydemo.database.multitenancy.MultiTenancyKeys.defaultDBName;
+import static io.github.danielnaczo.multitenancydemo.database.multitenancy.MultiTenancyKeys.DEFAULT_DB_NAME;
 
 @Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver, HibernatePropertiesCustomizer {
@@ -19,7 +19,7 @@ public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver
     }
 
     public void setTenantToDefault() {
-        currentTenant.set(defaultDBName);
+        currentTenant.set(DEFAULT_DB_NAME);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver
         if (currentTenant.get() != null) {
             return currentTenant.get();
         }
-        return defaultDBName;
+        return DEFAULT_DB_NAME;
     }
 
     @Override
